@@ -1,5 +1,5 @@
 
-from validaciones import leer_numero_positivo
+from validaciones import leer_numero
 
 def agregar_producto(inventario):
     print("\n=== AGREGAR PRODUCTO ===")
@@ -7,8 +7,8 @@ def agregar_producto(inventario):
     categoria = input("Ingrese la categoría: ").strip()
     
     
-    precio = leer_numero_positivo("Ingrese el precio: ", es_entero=False)
-    stock = leer_numero_positivo("Ingrese el stock: ", es_entero=True)
+    precio = leer_numero("Ingrese el precio: ", es_entero=False)
+    stock = leer_numero("Ingrese el stock: ", es_entero=True)
 
     producto = {
         "nombre": nombre,
@@ -55,8 +55,8 @@ def modificar_producto(inventario):
             print(f"\nModificando '{producto['nombre']}':")
             producto["nombre"] = input("Nuevo nombre: ").strip()
             producto["categoria"] = input("Nueva categoría: ").strip()
-            producto["precio"] = leer_numero_positivo("Nuevo precio: ", es_entero=False)
-            producto["stock"] = leer_numero_positivo("Nuevo stock: ", es_entero=True)
+            producto["precio"] = leer_numero("Nuevo precio: ", es_entero=False)
+            producto["stock"] = leer_numero("Nuevo stock: ", es_entero=True)
             print("Producto modificado correctamente.")
             return
 

@@ -34,7 +34,7 @@ def menu():
         elif opcion == "6":
             fn.mostrar_categoria(inventario)
         elif opcion == "7":
-            n = int(leer_numero ("Ingrese número entero para factorial: ", es_entero=True))
+            n = int(leer_numero("Ingrese número entero para factorial: ", es_entero=True))
             res = util.calcular_factorial(n)
             print(f"🔢 El factorial de {n} es: {res}")
         elif opcion == "8":

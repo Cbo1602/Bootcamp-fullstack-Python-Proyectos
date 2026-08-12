@@ -1,6 +1,6 @@
 
 
-def leer_numero (mensaje, es_entero=False):
+def leer_numero(mensaje, es_entero=False):
 
     while True:
         try:

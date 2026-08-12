@@ -1,0 +1,8 @@
+Fecha: 12-08-2026 14:44:29 | Acción: Agregó cliente ID: 888
+Fecha: 12-08-2026 14:44:29 | Acción: Eliminó cliente ID: 888
+Fecha: 12-08-2026 14:44:29 | Acción: Agregó cliente ID: 999
+Fecha: 12-08-2026 14:44:29 | Acción: Eliminó cliente ID: 999
+Fecha: 12-08-2026 14:57:45 | Acción: Agregó cliente ID: 888
+Fecha: 12-08-2026 14:57:46 | Acción: Eliminó cliente ID: 888
+Fecha: 12-08-2026 14:57:47 | Acción: Agregó cliente ID: 999
+Fecha: 12-08-2026 14:57:47 | Acción: Eliminó cliente ID: 999

@@ -1,0 +1,13 @@
+.card-proyecto {
+    transition: transform 0.15s ease-in-out;
+}
+
+.card-proyecto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.tarea-completada {
+    text-decoration: line-through;
+    color: #6c757d;
+}

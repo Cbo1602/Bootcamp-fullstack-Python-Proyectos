@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <h2 class="mb-4">Iniciar sesión</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
+            {% endif %}
+            <div class="mb-3">
+                <label class="form-label">Usuario</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+            <a href="{% url 'tasks:registro' %}" class="btn btn-link">Crear cuenta</a>
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+</div>
+{% endblock %}

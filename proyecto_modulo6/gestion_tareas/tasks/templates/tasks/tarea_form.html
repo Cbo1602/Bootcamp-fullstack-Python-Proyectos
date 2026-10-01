@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{% if object %}Editar tarea{% else %}Nueva tarea{% endif %}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="mb-4">{% if object %}Editar tarea{% else %}Nueva tarea{% endif %} en "{{ proyecto.nombre }}"</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3 {% if field.name == 'completada' %}form-check{% endif %}">
+                    {% if field.name == 'completada' %}
+                        {{ field }}
+                        <label class="form-check-label ms-1">{{ field.label }}</label>
+                    {% else %}
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'tasks:proyecto_detalle' proyecto.pk %}" class="btn btn-link">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

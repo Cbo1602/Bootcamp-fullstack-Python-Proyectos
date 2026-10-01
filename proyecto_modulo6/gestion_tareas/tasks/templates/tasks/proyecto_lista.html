@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Mis proyectos{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Mis proyectos</h2>
+    <a href="{% url 'tasks:proyecto_crear' %}" class="btn btn-primary">+ Nuevo proyecto</a>
+</div>
+
+{% if proyectos %}
+    <div class="row g-3">
+        {% for proyecto in proyectos %}
+            <div class="col-md-4">
+                <div class="card card-proyecto h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ proyecto.nombre }}</h5>
+                        <p class="card-text text-muted">{{ proyecto.descripcion|default:"Sin descripción"|truncatewords:15 }}</p>
+                        <span class="badge bg-secondary">{{ proyecto.tareas_pendientes }} tarea(s) pendiente(s)</span>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <a href="{% url 'tasks:proyecto_detalle' proyecto.pk %}" class="btn btn-sm btn-outline-primary">Ver detalle</a>
+                        <a href="{% url 'tasks:proyecto_editar' proyecto.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                        <a href="{% url 'tasks:proyecto_eliminar' proyecto.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">Todavía no creaste ningún proyecto. ¡Empezá creando el primero!</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Clientes · Alke Wallet{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+  <h1 class="h3 titulo mb-0">Clientes</h1>
+  <a class="btn btn-primary" href="{% url 'gestion:cliente_create' %}">Nuevo cliente</a>
+</div>
+<form method="get" class="mb-3"><div class="input-group">
+  <input class="form-control" name="q" value="{{ request.GET.q }}" placeholder="Buscar por nombre o correo" aria-label="Buscar">
+  <button class="btn btn-outline-primary">Buscar</button></div></form>
+<div class="panel p-2"><div class="table-responsive">
+<table class="table tabla mb-0">
+  <thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Cuentas</th><th></th></tr></thead>
+  <tbody>
+  {% for c in object_list %}
+    <tr><td>{{ c.nombre }}</td><td>{{ c.email }}</td><td>{{ c.telefono|default:"-" }}</td>
+      <td><span class="badge badge-lila">{{ c.n_cuentas }}</span></td>
+      <td class="text-end text-nowrap">
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'gestion:cliente_update' c.pk %}">Editar</a>
+        <a class="btn btn-sm btn-outline-secondary" href="{% url 'gestion:cliente_delete' c.pk %}">Eliminar</a></td></tr>
+  {% empty %}<tr><td colspan="5" class="text-muted">No hay clientes. Crea el primero con “Nuevo cliente”.</td></tr>
+  {% endfor %}
+  </tbody>
+</table></div></div>
+{% endblock %}

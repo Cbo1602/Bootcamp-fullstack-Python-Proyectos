@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="wallet-card mb-4">
+  <div class="moneda mb-2">Saldo total en cuentas activas e inactivas</div>
+  {% for t in totales %}
+    <div class="d-flex align-items-baseline gap-2 flex-wrap">
+      <span class="saldo">{{ t.simbolo }} {{ t.total|floatformat:"2g" }}</span>
+      <span class="moneda">{{ t.codigo }} · {{ t.n_cuentas }} cuenta{{ t.n_cuentas|pluralize }}</span>
+    </div>
+  {% empty %}
+    <div class="saldo">Sin saldo todavía</div>
+    <div class="moneda mt-2">Crea una moneda en el administrador y abre tu primera cuenta.</div>
+  {% endfor %}
+  <div class="mt-4 d-flex gap-2 flex-wrap">
+    <a class="btn btn-light" href="{% url 'gestion:transaccion_create' %}">Nueva transferencia</a>
+    <a class="btn btn-outline-light" href="{% url 'gestion:cuenta_create' %}">Abrir cuenta</a>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-6"><div class="panel p-3"><div class="text-muted small">Clientes</div><div class="h2 titulo mb-0">{{ n_clientes }}</div></div></div>
+  <div class="col-6"><div class="panel p-3"><div class="text-muted small">Cuentas activas</div><div class="h2 titulo mb-0">{{ n_cuentas }}</div></div></div>
+</div>
+
+<div class="panel p-3">
+  <h2 class="h5 titulo">Últimos movimientos</h2>
+  <div class="table-responsive">
+    <table class="table tabla mb-0">
+      <thead><tr><th>Fecha</th><th>De</th><th>A</th><th class="text-end">Monto</th></tr></thead>
+      <tbody>
+      {% for t in ultimas %}
+        <tr><td>{{ t.fecha|date:"d/m/Y H:i" }}</td><td>{{ t.cuenta_origen.cliente }}</td><td>{{ t.cuenta_destino.cliente }}</td><td class="text-end monto-sale">{{ t.monto|floatformat:"2g" }}</td></tr>
+      {% empty %}
+        <tr><td colspan="4" class="text-muted">Aún no hay transferencias. Haz la primera desde “Nueva transferencia”.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

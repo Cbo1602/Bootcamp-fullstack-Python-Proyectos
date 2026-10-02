@@ -1,0 +1,61 @@
+:root {
+  --ciruela: #2e1065;
+  --violeta: #5b21b6;
+  --morado: #7c3aed;
+  --orquidea: #a78bfa;
+  --lila: #ddd6fe;
+  --lavanda: #f5f3ff;
+  --tinta: #1f1535;
+  --bs-primary: #7c3aed;
+  --bs-primary-rgb: 124, 58, 237;
+  --bs-link-color: #5b21b6;
+  --bs-link-hover-color: #2e1065;
+  --bs-body-font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  --bs-body-color: var(--tinta);
+}
+
+body { background: linear-gradient(180deg, var(--lila) 0, var(--lavanda) 320px) no-repeat, var(--lavanda); min-height: 100vh; }
+
+.navbar-alke { background: linear-gradient(100deg, var(--ciruela), var(--violeta) 70%, var(--morado)); }
+.navbar-alke .navbar-brand { font-weight: 800; letter-spacing: -.01em; }
+.navbar-alke .nav-link { color: var(--lila); font-weight: 500; }
+.navbar-alke .nav-link:hover, .navbar-alke .nav-link.active { color: #fff; }
+
+.btn-primary {
+  --bs-btn-bg: var(--morado); --bs-btn-border-color: var(--morado);
+  --bs-btn-hover-bg: var(--violeta); --bs-btn-hover-border-color: var(--violeta);
+  --bs-btn-active-bg: var(--ciruela); --bs-btn-active-border-color: var(--ciruela);
+  --bs-btn-focus-shadow-rgb: 167, 139, 250;
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--violeta); --bs-btn-border-color: var(--orquidea);
+  --bs-btn-hover-bg: var(--violeta); --bs-btn-hover-border-color: var(--violeta);
+}
+.btn-outline-secondary { --bs-btn-color: #6b5b8f; --bs-btn-border-color: var(--lila); --bs-btn-hover-bg: var(--lila); --bs-btn-hover-color: var(--ciruela); --bs-btn-hover-border-color: var(--orquidea); }
+
+.form-control:focus, .form-select:focus { border-color: var(--orquidea); box-shadow: 0 0 0 .25rem rgba(167, 139, 250, .35); }
+.form-check-input:checked { background-color: var(--morado); border-color: var(--morado); }
+
+.panel { border: 1px solid var(--lila); border-radius: 1rem; box-shadow: 0 8px 24px rgba(91, 33, 182, .08); background: #fff; }
+.tabla thead th { background: var(--lila); color: var(--ciruela); font-weight: 700; border: 0; }
+.tabla tbody tr:hover { background: var(--lavanda); }
+.tabla td, .tabla th { vertical-align: middle; }
+
+.titulo { font-weight: 800; color: var(--ciruela); letter-spacing: -.02em; }
+.badge-lila { background: var(--lila); color: var(--ciruela); font-weight: 600; }
+.monto-entra { color: #15803d; font-weight: 700; }
+.monto-sale { color: var(--violeta); font-weight: 700; }
+
+/* Tarjeta de saldo: el elemento protagonista de la app */
+.wallet-card {
+  color: #fff; border-radius: 1.5rem; padding: 2rem;
+  background: radial-gradient(circle at 85% 10%, rgba(221, 214, 254, .55), transparent 45%),
+              linear-gradient(135deg, var(--ciruela) 0%, var(--violeta) 55%, var(--orquidea) 100%);
+  box-shadow: 0 18px 40px rgba(46, 16, 101, .35);
+}
+.wallet-card .saldo { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.1; }
+.wallet-card .moneda { color: var(--lila); font-weight: 600; }
+
+.alert-success { --bs-alert-bg: #ede9fe; --bs-alert-border-color: var(--orquidea); --bs-alert-color: var(--ciruela); }
+
+a:focus-visible, button:focus-visible, .btn:focus-visible { outline: 3px solid var(--orquidea); outline-offset: 2px; }

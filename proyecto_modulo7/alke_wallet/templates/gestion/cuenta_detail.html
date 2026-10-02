@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ object.numero }} · Alke Wallet{% endblock %}
+{% block content %}
+<div class="wallet-card mb-4">
+  <div class="moneda">{{ object.numero }} · {{ object.cliente }}</div>
+  <div class="saldo">{{ object.moneda.simbolo }} {{ object.saldo|floatformat:"2g" }}</div>
+  <div class="moneda mt-2">
+    {{ object.moneda.nombre }}{% if object.co_titulares.exists %} · Co-titulares: {% for c in object.co_titulares.all %}{{ c }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}
+  </div>
+</div>
+<div class="panel p-3">
+  <h2 class="h5 titulo">Movimientos</h2>
+  <div class="table-responsive"><table class="table tabla mb-0">
+    <thead><tr><th>Fecha</th><th>Detalle</th><th class="text-end">Monto</th></tr></thead>
+    <tbody>
+    {% for m in movimientos %}
+      <tr><td>{{ m.fecha|date:"d/m/Y H:i" }}</td>
+        <td>{{ m.descripcion|default:"Transferencia" }}</td>
+        {% if m.cuenta_destino_id == object.pk %}<td class="text-end monto-entra">+ {{ m.monto|floatformat:"2g" }}</td>
+        {% else %}<td class="text-end monto-sale">- {{ m.monto|floatformat:"2g" }}</td>{% endif %}</tr>
+    {% empty %}<tr><td colspan="3" class="text-muted">Esta cuenta aún no tiene movimientos.</td></tr>
+    {% endfor %}
+    </tbody></table></div>
+</div>
+<a class="btn btn-outline-secondary mt-3" href="{% url 'gestion:cuenta_list' %}">Volver a cuentas</a>
+{% endblock %}

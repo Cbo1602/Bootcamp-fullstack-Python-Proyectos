@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Reportes · Alke Wallet{% endblock %}
+{% block content %}
+<h1 class="h3 titulo mb-4">Reportes</h1>
+
+<div class="panel p-3 mb-4">
+  <h2 class="h5 titulo">Cuentas con más movimientos</h2>
+  <p class="text-muted small mb-2">Consulta ORM con filter(), exclude() y annotate().</p>
+  <div class="table-responsive"><table class="table tabla mb-0">
+    <thead><tr><th>Cuenta</th><th>Titular</th><th class="text-end">Enviado</th><th class="text-end">Recibido</th><th class="text-end">Movimientos</th></tr></thead>
+    <tbody>
+    {% for c in cuentas_movimiento %}
+      <tr><td>{{ c.numero }}</td><td>{{ c.cliente }}</td>
+        <td class="text-end">{{ c.moneda.simbolo }} {{ c.enviado|default:0|floatformat:"2g" }}</td>
+        <td class="text-end">{{ c.moneda.simbolo }} {{ c.recibido|default:0|floatformat:"2g" }}</td>
+        <td class="text-end"><span class="badge badge-lila">{{ c.n_movimientos }}</span></td></tr>
+    {% empty %}<tr><td colspan="5" class="text-muted">Aún no hay movimientos para reportar.</td></tr>
+    {% endfor %}
+    </tbody></table></div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-6"><div class="panel p-3 h-100">
+    <h2 class="h5 titulo">Transferencias de 100 o más</h2>
+    <p class="text-muted small mb-2">SQL personalizado con raw().</p>
+    <ul class="list-group list-group-flush">
+      {% for t in mayores %}
+        <li class="list-group-item d-flex justify-content-between"><span>{{ t.fecha|date:"d/m/Y" }} · {{ t.descripcion|default:"Transferencia" }}</span><strong class="monto-sale">{{ t.monto|floatformat:"2g" }}</strong></li>
+      {% empty %}<li class="list-group-item text-muted">No hay transferencias de ese monto.</li>
+      {% endfor %}
+    </ul></div></div>
+  <div class="col-lg-6"><div class="panel p-3 h-100">
+    <h2 class="h5 titulo">Cuentas y saldo por moneda</h2>
+    <p class="text-muted small mb-2">SQL directo con cursor.</p>
+    <ul class="list-group list-group-flush">
+      {% for codigo, n, total in por_moneda %}
+        <li class="list-group-item d-flex justify-content-between"><span>{{ codigo }} <span class="badge badge-lila">{{ n }}</span></span><strong>{{ total|floatformat:"2g" }}</strong></li>
+      {% empty %}<li class="list-group-item text-muted">No hay monedas registradas.</li>
+      {% endfor %}
+    </ul></div></div>
+</div>
+{% endblock %}
